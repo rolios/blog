@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>todo.com</title>
+    <link href="http://r0ly.fr/feed.xml" rel="self" />
+    <link href="http://r0ly.fr" />
+    <id>http://r0ly.fr/feed.xml</id>
+    <author>
+        <name>Olivier Gonthier</name>
+        <email>o.gonthier@gmail.com</email>
+    </author>
+    <updated>Unknown</updated>
+    
+</feed>
