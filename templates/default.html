@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>My Hakyll Blog - $title$</title>
+    <link rel="alternate" type="application/rss+xml" title="Rolios mind" href="/feed.xml">
+    <link rel="stylesheet" type="text/css" href="/css/modern.css" />
+    <link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css">
+    <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.4.2/pure-min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <meta name="google-site-verification" content="1pLLmWYedzjX595PF-xDju3v9-3G-S54IwdlVVIdUsQ" />
+    <script>
+      //Analytics
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-34723917-1']);
+      _gaq.push(['_setDomainName', 'r0ly.fr']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+      //menu button
+      $$(function(){
+	$$("#menuButton").click(function(){
+	  $$("#menu").slideToggle("fast");
+	});
+      });
+    </script>
+</head>
+<body>
+  
+  $partial("templates/sidebar.html")$
+
+  <section id="content">
+      $body$
+  </section>
+  
+</body>
+</html>

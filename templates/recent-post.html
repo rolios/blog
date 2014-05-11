@@ -1,0 +1,19 @@
+<h1>$title$</h1>
+
+<section id="articles" class="pure-g-r">
+    $for(posts)$
+        <article class="pure-u-1-2">
+	  <header>
+            <h3>
+	      <a href="$url$">$title$</a>
+            </h3>
+	  </header>
+	  $if(description)$
+	  <div id="post-content">
+	    <p>$description$</p>
+	  </div>
+	  $endif$
+	  <p style="text-align:right; font-size:0.8em">$date$</p>
+        </article>
+    $endfor$
+</section>
