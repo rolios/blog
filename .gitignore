@@ -9,3 +9,7 @@ cabal-dev
 .cabal-sandbox/
 cabal.sandbox.config
 cabal.config
+_cache/
+site
+.sass-cache/
+css/.sass-cache/
