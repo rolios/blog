@@ -58,6 +58,14 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
                 >>= relativizeUrls
                 >>= removeIndexHtml
+                
+    match "about.html" $ do
+	route niceRoute
+	compile $ do
+	    getResourceBody
+		>>= loadAndApplyTemplate "templates/default.html" defaultContext
+		>>= relativizeUrls
+		>>= removeIndexHtml
     
     match "archives.html" $ do
     route niceRoute
