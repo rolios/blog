@@ -9,11 +9,11 @@ import           Hakyll
 --------------------------------------------------------------------------------
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
-  { feedTitle = "todo.com"
+  { feedTitle = "Rolios Mind - Olivier Gonthier's Blog"
   , feedDescription = "rolios mind blog"
   , feedAuthorName = "Olivier Gonthier"
   , feedAuthorEmail = "o.gonthier@gmail.com"
-  , feedRoot = "http://r0ly.fr"
+  , feedRoot = "http://oliviergonthier.com"
   }
   
 --------------------------------------------------------------------------------
