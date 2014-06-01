@@ -63,7 +63,8 @@ main = hakyll $ do
 	route niceRoute
 	compile $ do
 	    getResourceBody
-		>>= loadAndApplyTemplate "templates/default.html" defaultContext
+		>>= applyAsTemplate defCtx
+		>>= loadAndApplyTemplate "templates/default.html" defCtx
 		>>= relativizeUrls
 		>>= removeIndexHtml
     
