@@ -143,12 +143,17 @@ acronym
     line-height: 1.5*$unit
   h1
     color: $front
+    font-size: 3em
+  #title
+    background: $ambientblue
   h2
     background: $ambientblue
     margin-top: 2*$munit
     margin-bottom: 2*$munit
     padding: 2*$munit $munit
     text-align: center
+  #subtitle
+    margin-top: 0
   h2,h3
     border-bottom: solid $bordersize $darker
   h3
@@ -220,11 +225,12 @@ acronym
     border: none
   ul
     list-style: none
+    
   ul li:before
-    content: "- "
+    content: "⚪ "
     display: inline-block
     margin-left: $munit/2
-    width: 0
+    width: 10px
   ul
     padding-left: 0
     margin: $munit $hmargin
@@ -259,7 +265,6 @@ acronym
   font-size: 1px
   iframe, div, span
     vertical-align: top !important
-  
     
 @media only screen and (max-width: ($nbcharwidth*$unit - 2*$unit + 2*$hmargin))
   #content
@@ -283,14 +288,9 @@ p code, li code
   background: $codeintextbackground
 #content
   blockquote
-    padding: 2*$munit $munit
-    margin: 2*$munit auto
-    +altblock
-    & > p, & > ul, & > ol
-      +goodsize
-    border: solid 2px $border
-    p
-      padding: 0 $munit
+    font-style: italic
+    padding-left: 5px
+    border-left: solid 4px $ambientblue
 
 =roundbutton
   text-align: center
