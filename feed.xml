@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>todo.com</title>
-    <link href="http://r0ly.fr/feed.xml" rel="self" />
-    <link href="http://r0ly.fr" />
-    <id>http://r0ly.fr/feed.xml</id>
+    <title>Rolios Mind - Olivier Gonthier's Blog</title>
+    <link href="http://oliviergonthier.com/feed.xml" rel="self" />
+    <link href="http://oliviergonthier.com" />
+    <id>http://oliviergonthier.com/feed.xml</id>
     <author>
         <name>Olivier Gonthier</name>
         <email>o.gonthier@gmail.com</email>
@@ -11,8 +11,8 @@
     <updated>2014-06-01T00:00:00Z</updated>
     <entry>
     <title>Turning Point</title>
-    <link href="http://r0ly.fr/turning-point/index.html" />
-    <id>http://r0ly.fr/turning-point/index.html</id>
+    <link href="http://oliviergonthier.com/turning-point/index.html" />
+    <id>http://oliviergonthier.com/turning-point/index.html</id>
     <published>2014-06-01T00:00:00Z</published>
     <updated>2014-06-01T00:00:00Z</updated>
     <summary type="html"><![CDATA[Working and living differently, starting to blog. (Again)]]></summary>
