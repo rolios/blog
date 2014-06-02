@@ -20,7 +20,7 @@ Seduced by some of his ideas, I decided to give it a try. Instead of enumerating
 * I'm more concentrated, and more efficient the morning, because I don't have the weight of one work day
 * Having a time limit requires me to time-box tasks and to be more productive
 * Starting the day with something important for me is much better
-* Surprinsigly, it's easier to disconnect from my projects when I have to go to work
+* Surprisingly, it's easier to disconnect from my projects when I have to go to work
 * I start then to work at my job fully-awake (Well, this is really good for the image you give to your colleagues)
 * I'm not tired during my work day
 * I feel sooo much better the night because I don't want to work at all, and this change everything. When I take time to rest, I don't have regrets
