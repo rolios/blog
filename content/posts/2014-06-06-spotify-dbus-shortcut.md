@@ -1,5 +1,5 @@
 ---
-title: Spotify Shortcut on linux
+title: Spotify shortcut on linux
 subtitle: Using dbus to map shortcuts to Spotify
 description: I love Spotify, and I love my linux environment, but I didn't knew how to map shortcuts to the Spotify linux client: we can do it easily using dbus!
 ---
