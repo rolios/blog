@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Spotify Shortcut on linux - Rolios Mind</title>
+    <link rel="alternate" type="application/rss+xml" title="Rolios mind" href="../feed.xml">
+    <link rel="shortcut icon" type="image/png" href="../img/icon.png" />
+    <link rel="stylesheet" type="text/css" href="../css/modern.css" />
+    <link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css">
+    <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.4.2/pure-min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic" rel="stylesheet" type="text/css">
+    
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <meta name="google-site-verification" content="InTd_-k5MpBOBljzqw1T0z-VPI5DcOUPh6IObo19XXI" />
+    <meta name="description" content="Rolios mind - Olivier Gonthier's developer blog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      //Analytics
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-51551456-1', 'oliviergonthier.com');
+    ga('send', 'pageview');
+
+      //menu button
+      $(function(){
+	$("#menuButton").click(function(){
+	  $("#menu").slideToggle("fast");
+	});
+      });
+    </script>
+</head>
+<body>
+  
+    <aside class="sidebar">
+    <a href="#" id="menuButton"><i class="fa fa-bars fa-2x"></i></a>
+    <header>
+      <h1>Rolios Mind</h1>
+    </header>
+    <nav id="menu">
+      <ul class="fa-ul">
+	<li><a href="../"><i class="fa fa-home fa-li"></i> Home</a></li>
+	<li><a href="../archives/"><i class="fa fa-archive fa-li"></i> Archives</a></li>
+	<li><a href="../feed.xml"><i class="fa fa-rss fa-li"></i> RSS</a></li>
+	
+	<li style="margin-top:20px"><a href="../about/"><i class="fa fa-user fa-li"></i> About</a></li>
+	<li><a href="../files/cv-en.pdf"><i class="fa fa-suitcase fa-li"></i> CV<sup> (en)</sup></a></li>
+	<li><a href="../files/cv.pdf"><i class="fa fa-suitcase fa-li"></i> CV<sup> (fr)</sup></a></li>
+	<li><a href="https://twitter.com/rolios"><i class="fa fa-twitter fa-li"></i> Twitter</a></li>
+	<li><a href="https://github.com/OlivierGonthier"><i class="fa fa-github fa-li"></i> Github</a></li>
+      </ul>
+    </nav>
+    <footer>
+      Built with <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+    </footer>
+  </aside>
+
+  <section id="content">
+      <article>
+
+  <header>
+    <h1 id="title">Spotify Shortcut on linux</h1>
+    <h2 id="subtitle">Using dbus to map shortcuts to Spotify</h2>
+    <div class="info">
+      June  6, 2014
+    </div>
+  </header>
+  
+  <div id="articleContent">
+    <p>I’m using Opensuse with KDE, and I love this environnement. Also, I love to listen to my music on Spotify using the linux (beta) client, but I didn’t knew how to define shortcuts to control the app. It’s actually really easy to achieve using dbus.</p>
+<p>Ok, so first: <em>What is dbus?</em> This is the answer from the <a href="http://www.freedesktop.org/wiki/Software/dbus/">official site</a>:</p>
+<pre><code>D-Bus is a message bus system, a simple way for applications to talk to one another.[...]</code></pre>
+<p>Hum, it sounds great. Now, I don’t want to dive into details in this article. I just want a simple shortcut to my spotify app. How can I do? Let’s see if Spotify let us call the app through dbus.</p>
+<p>I use <em>qdbus</em> to explore my apps. Or even better, <em>qdbusviewer</em> which gives me an UI on top of <em>qdbus</em>. In the search field, I enter “spotify” and find a package name “com.spotify.qt”.</p>
+<div class="figure">
+<img src="../img/spotify-dbus-shortcut/qdbusviewer1.png" alt="Spotify in qdbusviewer" /><p class="caption">Spotify in qdbusviewer</p>
+</div>
+<p>At this point, you will have to expore the possibilities in the right panel. And we can test it directly! If you expand <em>org.freedesktop.MediaPlayer2</em>, you will find a list of available methods. Double-click on the one you want to test, and let the magic happen. Using <em>Method: PlayPause</em> will toggle your music for example.</p>
+<div class="figure">
+<img src="../img/spotify-dbus-shortcut/qdbusviewer2.png" alt="Exposed methods in qdbusviewer" /><p class="caption">Exposed methods in qdbusviewer</p>
+</div>
+<p>Now, we just have to map it with kde shortcuts. In system <em>settings &gt; shortcut &gt; custom</em>, you can add a new global custom shortcut, using <em>dbus command</em>. There, in <em>trigger</em>, you define your shortcut keys, and in action its effect. In <em>RemoteApplications</em>, specify the package name, in <em>Remote object</em>, the object at top-level of the method you want to use from qdbusviewer, and finally, in <em>Function</em>, type the method you want to use. You can see the parrallel between qdbusviewer and these settings in the two images below.</p>
+<div class="figure">
+<img src="../img/spotify-dbus-shortcut/qdbusviewer3.png" alt="PlayPause method, on object org.mrpis.MediaPlayer2" /><p class="caption">PlayPause method, on object org.mrpis.MediaPlayer2</p>
+</div>
+<div class="figure">
+<img src="../img/spotify-dbus-shortcut/shortcut-settings.png" alt="KDE shortcut settings" /><p class="caption">KDE shortcut settings</p>
+</div>
+<p>That’s it!</p>
+<p><strong>NB</strong>: <em>I hesitated to write this post on this blog. Making a choice on what to publish is hard: should I write on a specific subject, or anything? Should I write only on things that is kind of new, or is it good to write something that everyone can find easily on web? Finally, I made a choice regarding these questions: I consider this blog as a logbook.</em></p>
+  </div>
+  
+  <footer>
+    <p>If you enjoyed this article, please share it!</p>
+    
+    <!--  Twitter  -->
+    <span class="social">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="rolios" data-count="none">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </span>
+    
+    <!--  Facebook -->
+    <span class="social">
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.0";
+	fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+      <div class="fb-share-button" data-type="button"></div>
+    </span>
+    
+    <!--  G+ -->
+    <span class="social">
+      <div class="g-plus" data-action="share" data-annotation="none"></div>
+      <script type="text/javascript">
+	window.___gcfg = {lang: 'en-GB'};
+
+	(function() {
+	  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	  po.src = 'https://apis.google.com/js/platform.js';
+	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	})();
+      </script>
+    </span>
+    
+    <!--  Linkedin -->
+    <span class="social">
+      <script src="//platform.linkedin.com/in.js" type="text/javascript">
+	lang: en_US
+      </script>
+      <script type="IN/Share"></script>
+    </span>
+    
+  </footer>
+  
+</article>
+  </section>
+  
+</body>
+</html>
