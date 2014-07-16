@@ -1,5 +1,5 @@
 ---
-title: omnibox chrome extension
+title: Chrome omnibox extension
 subtitle: how-to: haskell inspector extension
 description: Some months ago, I developed (for fun) a Google Chrome extension to search in haskell documentation directly from the chrome search bar. The development was pretty easy and cool, that's why I wanted to describe it here.
 ---
