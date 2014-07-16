@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Recent Posts - Rolios Mind</title>
-    <link rel="alternate" type="application/rss+xml" title="Rolios mind" href="./feed.xml">
-    <link rel="shortcut icon" type="image/png" href="./img/icon.png" />
-    <link rel="stylesheet" type="text/css" href="./css/modern.css" />
-    <link rel="stylesheet" href="//yandex.st/highlightjs/8.0/styles/default.min.css">
-    <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.4.2/pure-min.css">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic" rel="stylesheet" type="text/css">
     
-    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="//yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="google-site-verification" content="InTd_-k5MpBOBljzqw1T0z-VPI5DcOUPh6IObo19XXI" />
     <meta name="description" content="Rolios mind - Olivier Gonthier's developer blog" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="alternate" type="application/rss+xml" title="Rolios mind" href="./feed.xml">
+    <link rel="shortcut icon" type="image/png" href="./img/icon.png" />
+    
+    <link rel="stylesheet" type="text/css" href="./css/modern.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.4.2/pure-min.css">
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic" rel="stylesheet" type="text/css">
+    
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
     <script>
-      //Analytics
+    //highlightjs
+    hljs.initHighlightingOnLoad();
+    
+    //Analytics
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -27,12 +34,12 @@
     ga('create', 'UA-51551456-1', 'oliviergonthier.com');
     ga('send', 'pageview');
 
-      //menu button
-      $(function(){
-	$("#menuButton").click(function(){
-	  $("#menu").slideToggle("fast");
-	});
+    //menu button
+    $(function(){
+      $("#menuButton").click(function(){
+	$("#menu").slideToggle("fast");
       });
+    });
     </script>
 </head>
 <body>
@@ -64,6 +71,20 @@
       <h1>Recent Posts</h1>
 
 <section id="articles" class="pure-g-r">
+    
+        <article class="pure-u-1-2">
+	  <header>
+            <h3>
+	      <a href="./chrome-omnibox-extension/">Chrome omnibox extension</a>
+            </h3>
+	  </header>
+	  
+	  <div id="post-content">
+	    <p>Some months ago, I developed (for fun) a Google Chrome extension to search in haskell documentation directly from the chrome search bar. The development was pretty easy and cool, that's why I wanted to describe it here.</p>
+	  </div>
+	  
+	  <p style="text-align:right; font-size:0.8em">July 15, 2014</p>
+        </article>
     
         <article class="pure-u-1-2">
 	  <header>

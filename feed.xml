@@ -8,8 +8,16 @@
         <name>Olivier Gonthier</name>
         <email>o.gonthier@gmail.com</email>
     </author>
-    <updated>2014-06-06T00:00:00Z</updated>
+    <updated>2014-07-15T00:00:00Z</updated>
     <entry>
+    <title>Chrome omnibox extension</title>
+    <link href="http://oliviergonthier.com/chrome-omnibox-extension/index.html" />
+    <id>http://oliviergonthier.com/chrome-omnibox-extension/index.html</id>
+    <published>2014-07-15T00:00:00Z</published>
+    <updated>2014-07-15T00:00:00Z</updated>
+    <summary type="html"><![CDATA[Some months ago, I developed (for fun) a Google Chrome extension to search in haskell documentation directly from the chrome search bar. The development was pretty easy and cool, that's why I wanted to describe it here.]]></summary>
+</entry>
+<entry>
     <title>Spotify shortcut on linux</title>
     <link href="http://oliviergonthier.com/spotify-dbus-shortcut/index.html" />
     <id>http://oliviergonthier.com/spotify-dbus-shortcut/index.html</id>

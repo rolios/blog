@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Chrome omnibox extension - Rolios Mind</title>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="google-site-verification" content="InTd_-k5MpBOBljzqw1T0z-VPI5DcOUPh6IObo19XXI" />
+    <meta name="description" content="Rolios mind - Olivier Gonthier's developer blog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="alternate" type="application/rss+xml" title="Rolios mind" href="../feed.xml">
+    <link rel="shortcut icon" type="image/png" href="../img/icon.png" />
+    
+    <link rel="stylesheet" type="text/css" href="../css/modern.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css">
+    <link rel="stylesheet" href="//yui.yahooapis.com/pure/0.4.2/pure-min.css">
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic" rel="stylesheet" type="text/css">
+    
+    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
+    <script>
+    //highlightjs
+    hljs.initHighlightingOnLoad();
+    
+    //Analytics
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-51551456-1', 'oliviergonthier.com');
+    ga('send', 'pageview');
+
+    //menu button
+    $(function(){
+      $("#menuButton").click(function(){
+	$("#menu").slideToggle("fast");
+      });
+    });
+    </script>
+</head>
+<body>
+  
+    <aside class="sidebar">
+    <a href="#" id="menuButton"><i class="fa fa-bars fa-2x"></i></a>
+    <header>
+      <h1>Rolios Mind</h1>
+    </header>
+    <nav id="menu">
+      <ul class="fa-ul">
+	<li><a href="../"><i class="fa fa-home fa-li"></i> Home</a></li>
+	<li><a href="../archives/"><i class="fa fa-archive fa-li"></i> Archives</a></li>
+	<li><a href="../feed.xml"><i class="fa fa-rss fa-li"></i> RSS</a></li>
+	
+	<li style="margin-top:20px"><a href="../about/"><i class="fa fa-user fa-li"></i> About</a></li>
+	<li><a href="../files/cv-en.pdf"><i class="fa fa-suitcase fa-li"></i> CV<sup> (en)</sup></a></li>
+	<li><a href="../files/cv.pdf"><i class="fa fa-suitcase fa-li"></i> CV<sup> (fr)</sup></a></li>
+	<li><a href="https://twitter.com/rolios"><i class="fa fa-twitter fa-li"></i> Twitter</a></li>
+	<li><a href="https://github.com/OlivierGonthier"><i class="fa fa-github fa-li"></i> Github</a></li>
+      </ul>
+    </nav>
+    <footer>
+      Built with <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+    </footer>
+  </aside>
+
+  <section id="content">
+      <article>
+
+  <header>
+    <h1 id="title">Chrome omnibox extension</h1>
+    <h2 id="subtitle">how-to: haskell inspector extension</h2>
+    <div class="info">
+      July 15, 2014
+    </div>
+  </header>
+  
+  <div id="articleContent">
+    <p>Some months ago, I developed (for fun) a Google Chrome extension to search in haskell documentation directly from the chrome search bar. The development was pretty easy and cool, that’s why I wanted to describe it here.</p>
+<p>I started by looking the code of a similar plugin I’m used to, the Android SDK Search extension from Roman Nurik, <a href="https://github.com/romannurik/AndroidSDKSearchExtension">available on Github</a>. The code is clear and instructive. I was about to tweak it to reach my own goal, but finally it was doing too much things for me.</p>
+<p>Then I took a look at <a href="https://developer.chrome.com/extensions/overview">the documentation</a>, and realized that contributing to search results from the search bar is well supported, with the <a href="https://developer.chrome.com/extensions/omnibox">omnibox api</a>. The <a href="https://developer.chrome.com/extensions/samples#omnibox-example">sample provided</a> is also a good starter point.</p>
+<p>The very first thing we need is a <strong><em>manifest.json</em></strong>. This file describe all the properties of our extension in a json format. Here we go:</p>
+<pre><code>{
+  &quot;manifest_version&quot;: 2,
+  &quot;name&quot;: &quot;Haskell inspector&quot;,
+  &quot;description&quot;: &quot;Adds an '&gt;&gt;' omnibox command and find results from hoogle, hackage&quot;,
+  &quot;version&quot;: &quot;1.0&quot;,
+  &quot;author&quot;: &quot;Gonthier Olivier&quot;,
+  &quot;icons&quot;: {
+    &quot;16&quot;: &quot;icons/16.png&quot;,
+    &quot;32&quot;: &quot;icons/32.png&quot;,
+    &quot;128&quot;: &quot;icons/128.png&quot;
+  },
+}</code></pre>
+<p>In this first version I only wrote basic informations that describes my app. These informations will be used by the chrome store later. In the description, I specify an <em>“omnibox command”</em>. The omnibox feature actually works with a command: in this case, when I will type <strong><em>‘&gt;&gt;’ + TAB</em></strong> in the search bar, it will activate my extension. To declare this command, I just have to add an omnibox field in my manifest.</p>
+<pre><code>&quot;omnibox&quot;: {
+    &quot;keyword&quot;: &quot;&gt;&gt;&quot;
+},</code></pre>
+<p>Ok, now we’re ready to develop the logic behing it, using javascript.</p>
+<pre><code>chrome.omnibox.onInputChanged.addListener(function(text, suggest) {
+
+});
+
+chrome.omnibox.onInputEntered.addListener(function(text) {
+
+});</code></pre>
+<p>I started by registering two event listeners: the first one will be called when the user type in the search input, and the second one is used when he validate his search. Let’s start with the input changed event.</p>
+<p>When this event occurs, I want to get the actual text typed, request the <a href="http://www.haskell.org/hoogle/">hoogle website</a> with this text in search parameter, and then parse the result. To understand how I can parse it, I examine a sample page with my browser developer console. I tested with <a href="www.haskell.org/hoogle/?hoogle=test">www.haskell.org/hoogle/?hoogle=test</a>, and found the recurring elements I needed. Also, I use jQuery to simplify the work on parsing and requesting.</p>
+<pre><code> chrome.omnibox.onInputChanged.addListener(function(text, suggest) {
+    if(!text) return;
+    $.ajax({
+        url:'http://haskell.org/hoogle?hoogle='+text,
+        type:'get',
+        dataType:'xml',
+        success: function(data){ 
+		    var suggestionArray = parseHooglePage(data)
+            suggest(suggestionArray);
+        }
+    });
+});</code></pre>
+<p>Chrome gave me two useful parameters: <strong><em>text</em></strong> is the actual text typed by the user, and <strong><em>suggest</em></strong> is a fonction taking an array in parameter, with all the search result we will suggest to the user! With <strong>$.ajax</strong> I do the request, in case of success I parse the page, and use the suggest function to display result. Here is the parsing function:</p>
+<pre><code>function parseHooglePage(data) {
+    var suggestions = $('.ans', data);
+    var suggestionsMap = suggestions.map(function(_, sugg){
+		var from = $(sugg, data)
+		  .next().filter('.from').html();
+		var link = $('a.a', sugg).attr('href');
+		var text = $(sugg).html();
+		text = text.replace(/&lt;(\/)?b&gt;/g, '&lt;$1match&gt;');
+		if(from)
+		    text = text + &quot; &lt;dim&gt; - &quot;+from+&quot;&lt;/dim&gt;&quot;;
+		return {content: link, description: text}
+    }); 
+    return suggestionsMap.toArray();
+}</code></pre>
+<p>I will not describe this part in details, since it’s very specific to the page I’m parsing. Basically, I found that every entries have a <strong><em>.ans</em></strong> class, so I can take all tags makred with this class, and iterate over them to get the content I need: a link, a text and a package source if any. To do that, I use the map function from jQuery.</p>
+<p>This function returns an array of objects like this:</p>
+<pre><code>{ 
+  &quot;content&quot;: &quot;http://hackage.haskell.org/packages/archive/base/latest/doc/html/Control-Monad.html#v:join&quot;,
+  &quot;description&quot;: &quot;&lt;match&gt;join&lt;/match&gt; :: Monad m =&gt; m (m a) -&gt; m a&lt;dim&gt; - base Control.Monad&lt;/dim&gt;&quot;
+}</code></pre>
+<p>This format is specified <a href="https://developer.chrome.com/extensions/omnibox#type-SuggestResult">here</a>. You may have notice the use of a specific markup in the description text. As described by the doc, you can use <strong><em>&lt; url &gt;</em></strong> to add links, <strong><em>&lt; match &gt;</em></strong> to highlight text searched by the user, and <strong><em>&lt; dim &gt;</em></strong> to give more indications on the result.</p>
+<p>Ok, at this point we are able to suggest results to the user. Now, what happens if he type <em>enter</em> on something we suggested?</p>
+<p>Guess what: it calls the second event, the one called <strong><em>onInputEntered</em></strong>. With this event, the url is passed in parameter. Now, we just have to navigate to this url, and we can do it using the chrome api:</p>
+<pre><code>chrome.omnibox.onInputEntered.addListener(function(url) {
+	chrome.tabs.query({
+        active: true,
+        currentWindow: true
+    }, function(tabs) {
+        chrome.tabs.update(tabs[0].id, {
+            url: url
+        });
+    });
+});</code></pre>
+<p>And that’s it! If you missed something, you can find the complete code on <a href="https://github.com/OlivierGonthier/haskell-chrome-inspector/">github</a>.</p>
+<p>To test it, just do a zip archive containing your script and your manifest, and visit <a href="chrome://extensions/">chrome://extensions/</a> to activate your extension. If you’re happy with it, you can then publish your extension on <a href="https://chrome.google.com/webstore/developer/dashboard">the store</a>.</p>
+<p>Great, isn’t it?</p>
+  </div>
+  
+  <footer>
+    <p>If you enjoyed this article, please share it!</p>
+    
+    <!--  Twitter  -->
+    <span class="social">
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="rolios" data-count="none">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    </span>
+    
+    <!--  Facebook -->
+    <span class="social">
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) return;
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.0";
+	fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+      <div class="fb-share-button" data-type="button"></div>
+    </span>
+    
+    <!--  G+ -->
+    <span class="social">
+      <div class="g-plus" data-action="share" data-annotation="none"></div>
+      <script type="text/javascript">
+	window.___gcfg = {lang: 'en-GB'};
+
+	(function() {
+	  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+	  po.src = 'https://apis.google.com/js/platform.js';
+	  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+	})();
+      </script>
+    </span>
+    
+    <!--  Linkedin -->
+    <span class="social">
+      <script src="//platform.linkedin.com/in.js" type="text/javascript">
+	lang: en_US
+      </script>
+      <script type="IN/Share"></script>
+    </span>
+    
+  </footer>
+  
+</article>
+  </section>
+  
+</body>
+</html>
