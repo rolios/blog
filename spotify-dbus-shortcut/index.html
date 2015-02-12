@@ -85,18 +85,22 @@
 <p>Hum, it sounds great. Now, I don’t want to dive into details in this article. I just want a simple shortcut to my spotify app. How can I do? Let’s see if Spotify let us call the app through dbus.</p>
 <p>I use <em>qdbus</em> to explore my apps. Or even better, <em>qdbusviewer</em> which gives me an UI on top of <em>qdbus</em>. In the search field, I enter “spotify” and find a package name “com.spotify.qt”.</p>
 <div class="figure">
-<img src="../img/spotify-dbus-shortcut/qdbusviewer1.png" alt="Spotify in qdbusviewer" /><p class="caption">Spotify in qdbusviewer</p>
+<img src="../img/spotify-dbus-shortcut/qdbusviewer1.png" alt="Spotify in qdbusviewer" />
+<p class="caption">Spotify in qdbusviewer</p>
 </div>
 <p>At this point, you will have to expore the possibilities in the right panel. And we can test it directly! If you expand <em>org.freedesktop.MediaPlayer2</em>, you will find a list of available methods. Double-click on the one you want to test, and let the magic happen. Using <em>Method: PlayPause</em> will toggle your music for example.</p>
 <div class="figure">
-<img src="../img/spotify-dbus-shortcut/qdbusviewer2.png" alt="Exposed methods in qdbusviewer" /><p class="caption">Exposed methods in qdbusviewer</p>
+<img src="../img/spotify-dbus-shortcut/qdbusviewer2.png" alt="Exposed methods in qdbusviewer" />
+<p class="caption">Exposed methods in qdbusviewer</p>
 </div>
 <p>Now, we just have to map it with kde shortcuts. In system <em>settings &gt; shortcut &gt; custom</em>, you can add a new global custom shortcut, using <em>dbus command</em>. There, in <em>trigger</em>, you define your shortcut keys, and in action its effect. In <em>RemoteApplications</em>, specify the package name, in <em>Remote object</em>, the object at top-level of the method you want to use from qdbusviewer, and finally, in <em>Function</em>, type the method you want to use. You can see the parrallel between qdbusviewer and these settings in the two images below.</p>
 <div class="figure">
-<img src="../img/spotify-dbus-shortcut/qdbusviewer3.png" alt="PlayPause method, on object org.mrpis.MediaPlayer2" /><p class="caption">PlayPause method, on object org.mrpis.MediaPlayer2</p>
+<img src="../img/spotify-dbus-shortcut/qdbusviewer3.png" alt="PlayPause method, on object org.mrpis.MediaPlayer2" />
+<p class="caption">PlayPause method, on object org.mrpis.MediaPlayer2</p>
 </div>
 <div class="figure">
-<img src="../img/spotify-dbus-shortcut/shortcut-settings.png" alt="KDE shortcut settings" /><p class="caption">KDE shortcut settings</p>
+<img src="../img/spotify-dbus-shortcut/shortcut-settings.png" alt="KDE shortcut settings" />
+<p class="caption">KDE shortcut settings</p>
 </div>
 <p>That’s it!</p>
 <p><strong>NB</strong>: <em>I hesitated to write this post on this blog. Making a choice on what to publish is hard: should I write on a specific subject, or anything? Should I write only on things that is kind of new, or is it good to write something that everyone can find easily on web? Finally, I made a choice regarding these questions: I consider this blog as a logbook.</em></p>

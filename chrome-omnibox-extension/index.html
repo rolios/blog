@@ -108,7 +108,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 
 });</code></pre>
 <p>I started by registering two event listeners: the first one will be called when the user type in the search input, and the second one is used when he validate his search. Let’s start with the input changed event.</p>
-<p>When this event occurs, I want to get the actual text typed, request the <a href="http://www.haskell.org/hoogle/">hoogle website</a> with this text in search parameter, and then parse the result. To understand how I can parse it, I examine a sample page with my browser developer console. I tested with <a href="www.haskell.org/hoogle/?hoogle=test">www.haskell.org/hoogle/?hoogle=test</a>, and found the recurring elements I needed. Also, I use jQuery to simplify the work on parsing and requesting.</p>
+<p>When this event occurs, I want to get the actual text typed, request the <a href="http://www.haskell.org/hoogle/">hoogle website</a> with this text in search parameter, and then parse the result. To understand how I can parse it, I examine a sample page with my browser developer console. I tested with <a href="www.haskell.org/hoogle/?hoogle=test" class="uri">www.haskell.org/hoogle/?hoogle=test</a>, and found the recurring elements I needed. Also, I use jQuery to simplify the work on parsing and requesting.</p>
 <pre><code> chrome.omnibox.onInputChanged.addListener(function(text, suggest) {
     if(!text) return;
     $.ajax({
@@ -156,7 +156,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
     });
 });</code></pre>
 <p>And that’s it! If you missed something, you can find the complete code on <a href="https://github.com/OlivierGonthier/haskell-chrome-inspector/">github</a>.</p>
-<p>To test it, just do a zip archive containing your script and your manifest, and visit <a href="chrome://extensions/">chrome://extensions/</a> to activate your extension. If you’re happy with it, you can then publish your extension on <a href="https://chrome.google.com/webstore/developer/dashboard">the store</a>.</p>
+<p>To test it, just do a zip archive containing your script and your manifest, and visit <a href="chrome://extensions/" class="uri">chrome://extensions/</a> to activate your extension. If you’re happy with it, you can then publish your extension on <a href="https://chrome.google.com/webstore/developer/dashboard">the store</a>.</p>
 <p>Great, isn’t it?</p>
   </div>
   
