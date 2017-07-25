@@ -79,7 +79,8 @@
   </header>
   
   <div id="articleContent">
-    <p>Some months ago, I developed (for fun) a Google Chrome extension to search in haskell documentation directly from the chrome search bar. The development was pretty easy and cool, that’s why I wanted to describe it here.</p>
+    <p><strong>NB</strong>: <em>This blog post was written in 2014 and might be deprecated.</em></p>
+<p>Some months ago, I developed (for fun) a Google Chrome extension to search in haskell documentation directly from the chrome search bar. The development was pretty easy and cool, that’s why I wanted to describe it here.</p>
 <p>I started by looking the code of a similar plugin I’m used to, the Android SDK Search extension from Roman Nurik, <a href="https://github.com/romannurik/AndroidSDKSearchExtension">available on Github</a>. The code is clear and instructive. I was about to tweak it to reach my own goal, but finally it was doing too much things for me.</p>
 <p>Then I took a look at <a href="https://developer.chrome.com/extensions/overview">the documentation</a>, and realized that contributing to search results from the search bar is well supported, with the <a href="https://developer.chrome.com/extensions/omnibox">omnibox api</a>. The <a href="https://developer.chrome.com/extensions/samples#omnibox-example">sample provided</a> is also a good starter point.</p>
 <p>The very first thing we need is a <strong><em>manifest.json</em></strong>. This file describe all the properties of our extension in a json format. Here we go:</p>
@@ -115,7 +116,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
         url:'http://haskell.org/hoogle?hoogle='+text,
         type:'get',
         dataType:'xml',
-        success: function(data){ 
+        success: function(data){
 		    var suggestionArray = parseHooglePage(data)
             suggest(suggestionArray);
         }
@@ -133,12 +134,12 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 		if(from)
 		    text = text + &quot; &lt;dim&gt; - &quot;+from+&quot;&lt;/dim&gt;&quot;;
 		return {content: link, description: text}
-    }); 
+    });
     return suggestionsMap.toArray();
 }</code></pre>
 <p>I will not describe this part in details, since it’s very specific to the page I’m parsing. Basically, I found that every entries have a <strong><em>.ans</em></strong> class, so I can take all tags makred with this class, and iterate over them to get the content I need: a link, a text and a package source if any. To do that, I use the map function from jQuery.</p>
 <p>This function returns an array of objects like this:</p>
-<pre><code>{ 
+<pre><code>{
   &quot;content&quot;: &quot;http://hackage.haskell.org/packages/archive/base/latest/doc/html/Control-Monad.html#v:join&quot;,
   &quot;description&quot;: &quot;&lt;match&gt;join&lt;/match&gt; :: Monad m =&gt; m (m a) -&gt; m a&lt;dim&gt; - base Control.Monad&lt;/dim&gt;&quot;
 }</code></pre>
